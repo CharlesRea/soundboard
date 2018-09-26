@@ -10,7 +10,9 @@ type GridCellProps = {
 const StyledGridItem = styled.div`
   border: 1px solid black;
   margin: 2px;
-  background-color: ${(props: { selected: boolean, active: boolean }) => (props.selected ? (props.active ? "orange" : "hotpink") : (props.active ? "yellow": "white"))};
+  cursor: pointer;
+  background-color: ${(props: { selected: boolean; active: boolean }) =>
+    props.selected ? (props.active ? "orange" : "hotpink") : props.active ? "yellow" : "white"};
 `;
 
 export const GridCell = (props: GridCellProps) => (

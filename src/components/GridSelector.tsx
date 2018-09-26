@@ -3,12 +3,12 @@ import { GridCell } from "./GridCell";
 import * as React from "react";
 import { times } from 'lodash';
 
-export type GridSelectionState = { [x: number]: { [y: number]: boolean } };
+export type GridSelectionState = { [x: number]: { [y: number]: { isSelected: boolean } } };
 type GridSelectorProps = {
   rows: number;
   columns: number;
   selectedItemState: GridSelectionState;
-  onSelectionChange: (x: number, y: number, selected: boolean) => void;
+  onSelectionChange: (row: number, column: number, selected: boolean) => void;
   activeColumn: number | null;
 };
 
@@ -24,7 +24,7 @@ export const GridSelector = (props: GridSelectorProps) => (
       times(props.columns, column => (
         <GridCell
           key={`row: ${row} column:  ${column}`}
-          isSelected={props.selectedItemState[row][column]}
+          isSelected={props.selectedItemState[row][column].isSelected}
           isActive={props.activeColumn === column}
           onSelectedChange={(isSelected) => props.onSelectionChange(row, column, isSelected)}
         />
